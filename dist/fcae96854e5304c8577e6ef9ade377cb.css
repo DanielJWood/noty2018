@@ -1,0 +1,27 @@
+/* #single-line-chart, #multiple-line-chart {*/
+.chart {
+  font-family: helvetica;
+  width: 50%;
+  height: 250px;
+  float: left; }
+  .chart h3 {
+    text-align: center; }
+  @media screen and (max-width: 450px) {
+    .chart {
+      height: 250px; } }
+  .chart path {
+    fill: none;
+    stroke-width: 3px; }
+  .chart .axis path {
+    display: none; }
+  .chart .axis text {
+    font-size: 13px;
+    fill: grey; }
+  .chart .axis.x line {
+    display: none; }
+  .chart .axis.y text {
+    text-anchor: end;
+    transform: translate(0px, -10px); }
+  .chart .axis.y line {
+    stroke: lightgrey;
+    stroke-dasharray: 3px 3px; }

@@ -1,0 +1,29 @@
+#single-line-chart, #multiple-line-chart {
+  font-family: helvetica;
+  width: 100%;
+  max-width: 600px;
+  height: 400px; }
+  #single-line-chart h3, #multiple-line-chart h3 {
+    text-align: center; }
+  @media screen and (max-width: 450px) {
+    #single-line-chart, #multiple-line-chart {
+      height: 250px; } }
+  #single-line-chart path, #multiple-line-chart path {
+    fill: none;
+    stroke-width: 3px; }
+  #single-line-chart .axis path, #multiple-line-chart .axis path {
+    display: none; }
+  #single-line-chart .axis text, #multiple-line-chart .axis text {
+    font-size: 13px;
+    fill: grey; }
+  #single-line-chart .axis.x line, #multiple-line-chart .axis.x line {
+    display: none; }
+  #single-line-chart .axis.y text, #multiple-line-chart .axis.y text {
+    text-anchor: end;
+    transform: translate(0px, -10px); }
+  #single-line-chart .axis.y line, #multiple-line-chart .axis.y line {
+    stroke: lightgrey;
+    stroke-dasharray: 3px 3px; }
+
+#multiple-line-chart {
+  margin-top: 80px; }
