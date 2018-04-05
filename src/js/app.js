@@ -50,19 +50,30 @@ var dragonNames = [
   ["Ceejhay French-Love","YoHeinz Tyler",[2,15]]
 ];
 
+var chrotchNames = [
+  ["Dr. Narwhals Mating","Clinton Bacon",[1,16]],
+  ["Bramble Klipple","Mahogany Loggins",[8,9]],
+  ["Rev. Hobbit Forrest","Genuine Potts",[5,12]],
+  ["Beau Titsworth","Palestine Ace",[4,13]],
+  ["Sixto Cancel","Hallelujah Lulie",[6,11]],
+  ["Dr. Taekwondo Byrd","Bucky Worboys",[3,14]],
+  ["Lukas Chalupa","Gandalf Hernandez",[7,10]],
+  ["Shaka Licorish","Tuesday DerMargosian",[2,15]]
+];
+
+
 d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/fruithandler_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/bulltron_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/dragonwagon_regional.csv")    
+    .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/chrotchtangle_regional.csv")    
     .await(ready);
 
-function ready(error, fruithandler, bulltron, dragonwagon) {
+function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle) {
 
   var timetime = document.getElementById("time")
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
-  console.log(formatTime(d3.timeHour.offset(parseTime(dragonwagon[dragonwagon.length - 1].date),-4)))
-
 
   timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(dragonwagon[dragonwagon.length - 1].date),-4));
 
@@ -94,8 +105,14 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
   const myDragon6 = new chart();
   const myDragon7 = new chart();
 
-
-  // const myFruit8 = new chart();
+const myChrotch0 = new chart();
+const myChrotch1 = new chart();
+const myChrotch2 = new chart();
+const myChrotch3 = new chart();
+const myChrotch4 = new chart();
+const myChrotch5 = new chart();
+const myChrotch6 = new chart();
+const myChrotch7 = new chart();
 
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
@@ -337,6 +354,86 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     rank: d => dragonNames[7][2],
     yAccessor: d => (d[dragonNames[7][0]] == undefined) ? -10 : +d[dragonNames[7][0]].replace(/,/g, ""),
     y2Accessor: d => (d[dragonNames[7][1]] == undefined) ? -10 : +d[dragonNames[7][1]].replace(/,/g, "")
+  });
+
+  myChrotch0.create('#chrotch0', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[0][0],
+    y2Name: d => chrotchNames[0][1],
+    rank: d => chrotchNames[0][2],
+    yAccessor: d => (d[chrotchNames[0][0]] == undefined) ? -10 : +d[chrotchNames[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[0][1]] == undefined) ? -10 : +d[chrotchNames[0][1]].replace(/,/g, "")
+  });
+
+  myChrotch1.create('#chrotch1', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[1][0],
+    y2Name: d => chrotchNames[1][1],
+    rank: d => chrotchNames[1][2],
+    yAccessor: d => (d[chrotchNames[1][0]] == undefined) ? -10 : +d[chrotchNames[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[1][1]] == undefined) ? -10 : +d[chrotchNames[1][1]].replace(/,/g, "")
+  });
+
+  myChrotch2.create('#chrotch2', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[2][0],
+    y2Name: d => chrotchNames[2][1],
+    rank: d => chrotchNames[2][2],
+    yAccessor: d => (d[chrotchNames[2][0]] == undefined) ? -10 : +d[chrotchNames[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[2][1]] == undefined) ? -10 : +d[chrotchNames[2][1]].replace(/,/g, "")
+  });
+
+  myChrotch3.create('#chrotch3', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[3][0],
+    y2Name: d => chrotchNames[3][1],
+    rank: d => chrotchNames[3][2],
+    yAccessor: d => (d[chrotchNames[3][0]] == undefined) ? -10 : +d[chrotchNames[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[3][1]] == undefined) ? -10 : +d[chrotchNames[3][1]].replace(/,/g, "")
+  });
+
+  myChrotch4.create('#chrotch4', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[4][0],
+    y2Name: d => chrotchNames[4][1],
+    rank: d => chrotchNames[4][2],
+    yAccessor: d => (d[chrotchNames[4][0]] == undefined) ? -10 : +d[chrotchNames[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[4][1]] == undefined) ? -10 : +d[chrotchNames[4][1]].replace(/,/g, "")
+  });
+
+  myChrotch5.create('#chrotch5', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[5][0],
+    y2Name: d => chrotchNames[5][1],
+    rank: d => chrotchNames[5][2],
+    yAccessor: d => (d[chrotchNames[5][0]] == undefined) ? -10 : +d[chrotchNames[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[5][1]] == undefined) ? -10 : +d[chrotchNames[5][1]].replace(/,/g, "")
+  });
+
+  myChrotch6.create('#chrotch6', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[6][0],
+    y2Name: d => chrotchNames[6][1],
+    rank: d => chrotchNames[6][2],
+    yAccessor: d => (d[chrotchNames[6][0]] == undefined) ? -10 : +d[chrotchNames[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[6][1]] == undefined) ? -10 : +d[chrotchNames[6][1]].replace(/,/g, "")
+  });
+
+  myChrotch7.create('#chrotch7', chrotchtangle, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => chrotchNames[7][0],
+    y2Name: d => chrotchNames[7][1],
+    rank: d => chrotchNames[7][2],
+    yAccessor: d => (d[chrotchNames[7][0]] == undefined) ? -10 : +d[chrotchNames[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[chrotchNames[7][1]] == undefined) ? -10 : +d[chrotchNames[7][1]].replace(/,/g, "")
   });
 
 
