@@ -98,8 +98,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[0][0],
     y2Name: d => fruitNames[0][1],
     rank: d => fruitNames[0][2],
-    yAccessor: d => +d[fruitNames[0][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[0][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[0][0]] == undefined) ? -10 : +d[fruitNames[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[0][1]] == undefined) ? -10 : +d[fruitNames[0][1]].replace(/,/g, "")
   });
 
   myFruit1.create('#fruit1', fruithandler, {
@@ -108,8 +108,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[1][0],
     y2Name: d => fruitNames[1][1],
     rank: d => fruitNames[1][2],
-    yAccessor: d => +d[fruitNames[1][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[1][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[1][0]] == undefined) ? -10 : +d[fruitNames[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[1][1]] == undefined) ? -10 : +d[fruitNames[1][1]].replace(/,/g, "")
   });
 
   myFruit2.create('#fruit2', fruithandler, {
@@ -118,8 +118,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[2][0],
     y2Name: d => fruitNames[2][1],
     rank: d => fruitNames[2][2],
-    yAccessor: d => +d[fruitNames[2][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[2][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[2][0]] == undefined) ? -10 : +d[fruitNames[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[2][1]] == undefined) ? -10 : +d[fruitNames[2][1]].replace(/,/g, "")
   });
 
   myFruit3.create('#fruit3', fruithandler, {
@@ -128,8 +128,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[3][0],
     y2Name: d => fruitNames[3][1],
     rank: d => fruitNames[3][2],
-    yAccessor: d => +d[fruitNames[3][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[3][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[3][0]] == undefined) ? -10 : +d[fruitNames[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[3][1]] == undefined) ? -10 : +d[fruitNames[3][1]].replace(/,/g, "")
   });
 
   myFruit4.create('#fruit4', fruithandler, {
@@ -138,8 +138,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[4][0],
     y2Name: d => fruitNames[4][1],
     rank: d => fruitNames[4][2],
-    yAccessor: d => +d[fruitNames[4][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[4][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[4][0]] == undefined) ? -10 : +d[fruitNames[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[4][1]] == undefined) ? -10 : +d[fruitNames[4][1]].replace(/,/g, "")
   });
 
   myFruit5.create('#fruit5', fruithandler, {
@@ -148,8 +148,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[5][0],
     y2Name: d => fruitNames[5][1],
     rank: d => fruitNames[5][2],
-    yAccessor: d => +d[fruitNames[5][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[5][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[5][0]] == undefined) ? -10 : +d[fruitNames[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[5][1]] == undefined) ? -10 : +d[fruitNames[5][1]].replace(/,/g, "")
   });
 
   myFruit6.create('#fruit6', fruithandler, {
@@ -158,8 +158,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[6][0],
     y2Name: d => fruitNames[6][1],
     rank: d => fruitNames[6][2],
-    yAccessor: d => +d[fruitNames[6][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[6][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[6][0]] == undefined) ? -10 : +d[fruitNames[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[6][1]] == undefined) ? -10 : +d[fruitNames[6][1]].replace(/,/g, "")
   });
 
   myFruit7.create('#fruit7', fruithandler, {
@@ -168,8 +168,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => fruitNames[7][0],
     y2Name: d => fruitNames[7][1],
     rank: d => fruitNames[7][2],
-    yAccessor: d => +d[fruitNames[7][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[fruitNames[7][1]].replace(/,/g, "")
+    yAccessor: d => (d[fruitNames[7][0]] == undefined) ? -10 : +d[fruitNames[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[fruitNames[7][1]] == undefined) ? -10 : +d[fruitNames[7][1]].replace(/,/g, "")
   });
 
   myBull0.create('#bull0', bulltron, {
@@ -178,8 +178,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[0][0],
     y2Name: d => bullNames[0][1],
     rank: d => bullNames[0][2],
-    yAccessor: d => +d[bullNames[0][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[0][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[0][0]] == undefined) ? -10 : +d[bullNames[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[0][1]] == undefined) ? -10 : +d[bullNames[0][1]].replace(/,/g, "")
   });
 
   myBull1.create('#bull1', bulltron, {
@@ -188,8 +188,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[1][0],
     y2Name: d => bullNames[1][1],
     rank: d => bullNames[1][2],
-    yAccessor: d => +d[bullNames[1][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[1][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[1][0]] == undefined) ? -10 : +d[bullNames[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[1][1]] == undefined) ? -10 : +d[bullNames[1][1]].replace(/,/g, "")
   });
 
   myBull2.create('#bull2', bulltron, {
@@ -198,8 +198,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[2][0],
     y2Name: d => bullNames[2][1],
     rank: d => bullNames[2][2],
-    yAccessor: d => +d[bullNames[2][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[2][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[2][0]] == undefined) ? -10 : +d[bullNames[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[2][1]] == undefined) ? -10 : +d[bullNames[2][1]].replace(/,/g, "")
   });
 
   myBull3.create('#bull3', bulltron, {
@@ -208,8 +208,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[3][0],
     y2Name: d => bullNames[3][1],
     rank: d => bullNames[3][2],
-    yAccessor: d => +d[bullNames[3][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[3][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[3][0]] == undefined) ? -10 : +d[bullNames[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[3][1]] == undefined) ? -10 : +d[bullNames[3][1]].replace(/,/g, "")
   });
 
   myBull4.create('#bull4', bulltron, {
@@ -218,8 +218,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[4][0],
     y2Name: d => bullNames[4][1],
     rank: d => bullNames[4][2],
-    yAccessor: d => +d[bullNames[4][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[4][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[4][0]] == undefined) ? -10 : +d[bullNames[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[4][1]] == undefined) ? -10 : +d[bullNames[4][1]].replace(/,/g, "")
   });
 
   myBull5.create('#bull5', bulltron, {
@@ -228,8 +228,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[5][0],
     y2Name: d => bullNames[5][1],
     rank: d => bullNames[5][2],
-    yAccessor: d => +d[bullNames[5][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[5][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[5][0]] == undefined) ? -10 : +d[bullNames[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[5][1]] == undefined) ? -10 : +d[bullNames[5][1]].replace(/,/g, "")
   });
 
   myBull6.create('#bull6', bulltron, {
@@ -238,8 +238,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[6][0],
     y2Name: d => bullNames[6][1],
     rank: d => bullNames[6][2],
-    yAccessor: d => +d[bullNames[6][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[6][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[6][0]] == undefined) ? -10 : +d[bullNames[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[6][1]] == undefined) ? -10 : +d[bullNames[6][1]].replace(/,/g, "")
   });
 
   myBull7.create('#bull7', bulltron, {
@@ -248,8 +248,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => bullNames[7][0],
     y2Name: d => bullNames[7][1],
     rank: d => bullNames[7][2],
-    yAccessor: d => +d[bullNames[7][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[bullNames[7][1]].replace(/,/g, "")
+    yAccessor: d => (d[bullNames[7][0]] == undefined) ? -10 : +d[bullNames[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[bullNames[7][1]] == undefined) ? -10 : +d[bullNames[7][1]].replace(/,/g, "")
   });
 
   myDragon0.create('#dragon0', dragonwagon, {
@@ -258,8 +258,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[0][0],
     y2Name: d => dragonNames[0][1],
     rank: d => dragonNames[0][2],
-    yAccessor: d => +d[dragonNames[0][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[0][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[0][0]] == undefined) ? -10 : +d[dragonNames[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[0][1]] == undefined) ? -10 : +d[dragonNames[0][1]].replace(/,/g, "")
   });
 
   myDragon1.create('#dragon1', dragonwagon, {
@@ -268,8 +268,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[1][0],
     y2Name: d => dragonNames[1][1],
     rank: d => dragonNames[1][2],
-    yAccessor: d => +d[dragonNames[1][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[1][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[1][0]] == undefined) ? -10 : +d[dragonNames[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[1][1]] == undefined) ? -10 : +d[dragonNames[1][1]].replace(/,/g, "")
   });
 
   myDragon2.create('#dragon2', dragonwagon, {
@@ -278,8 +278,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[2][0],
     y2Name: d => dragonNames[2][1],
     rank: d => dragonNames[2][2],
-    yAccessor: d => +d[dragonNames[2][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[2][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[2][0]] == undefined) ? -10 : +d[dragonNames[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[2][1]] == undefined) ? -10 : +d[dragonNames[2][1]].replace(/,/g, "")
   });
 
   myDragon3.create('#dragon3', dragonwagon, {
@@ -288,8 +288,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[3][0],
     y2Name: d => dragonNames[3][1],
     rank: d => dragonNames[3][2],
-    yAccessor: d => +d[dragonNames[3][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[3][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[3][0]] == undefined) ? -10 : +d[dragonNames[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[3][1]] == undefined) ? -10 : +d[dragonNames[3][1]].replace(/,/g, "")
   });
 
   myDragon4.create('#dragon4', dragonwagon, {
@@ -298,8 +298,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[4][0],
     y2Name: d => dragonNames[4][1],
     rank: d => dragonNames[4][2],
-    yAccessor: d => +d[dragonNames[4][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[4][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[4][0]] == undefined) ? -10 : +d[dragonNames[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[4][1]] == undefined) ? -10 : +d[dragonNames[4][1]].replace(/,/g, "")
   });
 
   myDragon5.create('#dragon5', dragonwagon, {
@@ -308,8 +308,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[5][0],
     y2Name: d => dragonNames[5][1],
     rank: d => dragonNames[5][2],
-    yAccessor: d => +d[dragonNames[5][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[5][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[5][0]] == undefined) ? -10 : +d[dragonNames[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[5][1]] == undefined) ? -10 : +d[dragonNames[5][1]].replace(/,/g, "")
   });
 
   myDragon6.create('#dragon6', dragonwagon, {
@@ -318,8 +318,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[6][0],
     y2Name: d => dragonNames[6][1],
     rank: d => dragonNames[6][2],
-    yAccessor: d => +d[dragonNames[6][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[6][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[6][0]] == undefined) ? -10 : +d[dragonNames[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[6][1]] == undefined) ? -10 : +d[dragonNames[6][1]].replace(/,/g, "")
   });
 
   myDragon7.create('#dragon7', dragonwagon, {
@@ -328,8 +328,8 @@ function ready(error, fruithandler, bulltron, dragonwagon) {
     yName: d => dragonNames[7][0],
     y2Name: d => dragonNames[7][1],
     rank: d => dragonNames[7][2],
-    yAccessor: d => +d[dragonNames[7][0]].replace(/,/g, ""),
-    y2Accessor: d => +d[dragonNames[7][1]].replace(/,/g, "")
+    yAccessor: d => (d[dragonNames[7][0]] == undefined) ? -10 : +d[dragonNames[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[dragonNames[7][1]] == undefined) ? -10 : +d[dragonNames[7][1]].replace(/,/g, "")
   });
 
 

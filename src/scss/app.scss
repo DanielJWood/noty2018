@@ -1,21 +1,72 @@
 $lineChart-container: '#single-line-chart, #multiple-line-chart';
+body {
+  font-family: 'Roboto Slab', serif;
+  // font-family: 'Open Sans', sans-serif;  
+}
+
+h1,h2,h3 {
+  font-family: 'Roboto Slab', serif;
+}
+
+.footer {
+  padding-top:40px;
+  color: #696969
+}
+
+#header {
+  text-align:center;
+
+  h1,h2,h3 {
+    padding: 0px;
+    margin: 0px;
+  }
+  h3 {
+    padding-bottom: 10px;
+  }
+
+
+}
+
+.region {
+  text-align: center;
+  margin-top: 50px;
+  height: 450px;
+}
 
 /* #{$lineChart-container} {*/
 .chart {
-  font-family: helvetica;
-  h3 {
+  
+  .title {
     text-align: center;
+    height: 50px;
   }
+
+  span.green {
+    background-color: lighten(#00ff80,30%);
+  }
+
+  span.pink {
+    background-color: lighten(#ff00ff,30%);
+  }
+
+
   
   // width: 100%;
   // max-width:500px;
-  width: 50%;
-  height: 250px;
+  width: 25%;
+  height: 300px;
   float: left;
 
+  svg {
+    // padding-bottom: 10px;
+    // padding-top: 5px;
+  }
 
-  @media screen and (max-width: 450px) {
-      height:250px;
+  @media screen and (max-width: 700px) {
+      width: 50%;
+      height: 300px;
+
+
   }
   path {
     fill: none;
@@ -35,7 +86,7 @@ $lineChart-container: '#single-line-chart, #multiple-line-chart';
     &.y {
       text {
         text-anchor:end;
-        transform:translate(0px,-10px);
+        // transform:translate(0px,-10px);
       }
       line {
         stroke: lightgrey;

@@ -13,11 +13,16 @@ export default () => ({
     // This is our props object.
     // We set default chart properties in this object that users can overwrite
     // with a props object when they call their chart (We will do this in app.js).
+    const parseTime = d3.timeParse("%m/%d/%y %H:%M")
+
+// d3.timeHour.offset(d,-4);
     let props = {
       xAccessor: d => d.date,
       yAccessor: d => null,
       y2Accessor: d => null,
       labelAccessor: null,
+      yTicks: 3,
+      xTicks: 3,
       // xTickFormat: null,
       // yTickFormat: null,
       // yTickSteps: null,
@@ -48,12 +53,12 @@ export default () => ({
           top: 25,
           right: 30,
           left: 70,
-          bottom: 25,
+          bottom: 80,
         };
         const innerWidth = width - margins.right - margins.left;
         const innerHeight = height - margins.top - margins.bottom;
         const parseYear = d3.timeParse('%Y');
-        const parseTime = d3.timeParse("%m/%d/%y %H:%M");
+        // const parseTime = d3.timeParse("%m/%d/%y %H:%M");
         const bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
         // Normalize data
@@ -61,36 +66,21 @@ export default () => ({
         const childData = data.map(d => ({
           x: props.xAccessor(d),
           y: props.yAccessor(d),
-          // y: [props.yAccessor(d),props.y2Accessor(d)],
           y2: props.y2Accessor(d),
-          // label: props.labelAccessor(d),
         }));
 
-
-        // console.log(props)
-        // console.log(data)
-        // let props2 = {
-        //   yFullAccessor: d => [props.yAccessor(d),props.y2Accessor(d)]
-        // }
-
-        // const normData = data.map(arr => arr.map(d => ({
-        //   x: props.xAccessor(d),
-        //   y: props2.yFullAccessor(d),
-        //   label: props.labelAccessor(d),
-        // })));
+        var childData1 = []
         var childData2 = []
-        // console.log(childData)
-        for (var i = 0; i < childData.length; i++) {
-          // console.log(normData[i])
-          // console.log(childData[i].y2)
-          var lilFella = {x: childData[i].x, y: childData[i].y2, label: "second"}
-          // console.log(lilFella)
-          childData2.push(lilFella)
+        for (var i = 0; i < childData.length; i++) {          
+          if (childData[i].y2 != -10) {            
+            var lilFella1 = {x: childData[i].x, y: childData[i].y, label: "first"}              
+            var lilFella2 = {x: childData[i].x, y: childData[i].y2, label: "second"}              
+            childData1.push(lilFella1)
+            childData2.push(lilFella2)
+          }
         }
 
-        const normData = [childData,childData2];        
-        // console.log(normData)
-
+        const normData = [childData1,childData2];        
 
         // Calculate the extent (min/max) of our data
         // for both our x and y axes;
@@ -134,13 +124,15 @@ export default () => ({
         // Axes
         const xAxis = d3.axisBottom(xScale)
           .tickFormat(props.xTickFormat)
+          .ticks(props.xTicks)
           .tickPadding(0);
 
         const yAxis = d3.axisLeft(yScale)
           .tickFormat(props.yTickFormat)
           .tickSize(-innerWidth - margins.left)
-          .tickValues(props.yTickSteps)
-          .tickPadding(0);         
+          // .tickValues(props.yTickSteps)
+          .ticks(props.yTicks)
+          .tickPadding(10);         
 
         const line = d3.line()
           .x(d => xScale(parseTime(d.x)))
@@ -155,6 +147,17 @@ export default () => ({
         // selection.appendSelect(<element selector>, <class string>)
         //
         // You can also chain calls like below:
+
+        // console.log(selection)
+        console.log(props.yName())
+
+        const title = d3.select(this)
+          .appendSelect('div')
+          .attr("class","title")
+          .html(function(){
+              return "<span class='pink'>#" + props.rank()[0] + " " + props.yName() + "</span><br>vs.<br>" + "<span class='green'>#" + props.rank()[1] + " " + props.y2Name() + "</span>"
+            })
+
         const g = d3.select(this)
           .appendSelect('svg')
           .attr('width', width)
@@ -166,18 +169,10 @@ export default () => ({
         g.appendSelect('g', 'y axis')
           .attr('transform', 'translate(0, 0)')
           .call(yAxis)
-          .append("text")
-            .attr("fill", "#000")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 10)
-            .attr("x",10)
-            .attr("dy", "0.4em")
-            .attr("text-anchor", "middle")
-            .text("←Obra Kernodle IV       ___        Blossom Albuquerque→"); 
 
         g.appendSelect('g', 'x axis')
           .attr('transform', `translate(0,${innerHeight})`)
-          .call(xAxis);
+          // .call(xAxis);
 
         // console.log(normData)
 
