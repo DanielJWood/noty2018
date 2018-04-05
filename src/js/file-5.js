@@ -20,6 +20,7 @@ export default () => ({
       xTickFormat: null,
       yTickFormat: null,
       yTickSteps: null,
+      colorScaleRange: ["#000","#00ff00","#ff0e00"]
     };
 
     function chart(selection) {
@@ -43,7 +44,10 @@ export default () => ({
         const innerHeight = height - margins.top - margins.bottom;
         const parseYear = d3.timeParse('%Y');
 
+        console.log(data)
+
         // Normalize data
+        // array of array because you might have more than one series (multiple line chart)
         const normData = data.map(arr => arr.map(d => ({
           x: props.xAccessor(d),
           y: props.yAccessor(d),
@@ -73,7 +77,7 @@ export default () => ({
 
         const colorScale = d3.scaleOrdinal()
           .domain(_.flatten(normData.map(arr => arr.map(d => d.label))))
-          .range(d3.schemeCategory10);
+          .range(props.colorScaleRange);
 
         // Axes
         const xAxis = d3.axisBottom(xScale)
@@ -112,6 +116,8 @@ export default () => ({
         g.appendSelect('g', 'x axis')
           .attr('transform', `translate(0,${innerHeight})`)
           .call(xAxis);
+
+
 
         // Add our lines data
         const lines = g.selectAll('path.line')
