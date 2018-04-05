@@ -58,6 +58,13 @@ d3.queue()
 
 function ready(error, fruithandler, bulltron, dragonwagon) {
 
+  var timetime = document.getElementById("time")
+  const parseTime = d3.timeParse("%m/%d/%y %H:%M")
+  const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
+  console.log(formatTime(d3.timeHour.offset(parseTime(dragonwagon[dragonwagon.length - 1].date),-4)))
+
+
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(dragonwagon[dragonwagon.length - 1].date),-4));
 
   // Declare our charts
   const myFruit0 = new chart();

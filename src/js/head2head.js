@@ -59,7 +59,7 @@ export default () => ({
         const innerHeight = height - margins.top - margins.bottom;
         const parseYear = d3.timeParse('%Y');
         // const parseTime = d3.timeParse("%m/%d/%y %H:%M");
-        const bisectDate = d3.bisector(function(d) { return d.date; }).left;
+        // const bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
         // Normalize data
         // array of array because you might have more than one series (multiple line chart)
@@ -149,7 +149,7 @@ export default () => ({
         // You can also chain calls like below:
 
         // console.log(selection)
-        console.log(props.yName())
+        // console.log(props.yName())
 
         const title = d3.select(this)
           .appendSelect('div')
