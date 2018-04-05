@@ -14,9 +14,22 @@ export default () => ({
     // We set default chart properties in this object that users can overwrite
     // with a props object when they call their chart (We will do this in app.js).
     let props = {
-      xAccessor: d => d.year,
-      yAccessor: d => d.value,
-      labelAccessor: d => d.cat,
+      xAccessor: d => d.date,
+      yAccessor: d => null,
+      y2Accessor: d => null,
+      labelAccessor: null,
+      // xTickFormat: null,
+      // yTickFormat: null,
+      // yTickSteps: null,
+      // xTickFormat: d => `Q1 ${d3.timeFormat('%y')(d)}`,
+      // yTickFormat: (d, i, o) => {
+      //   if (i === o.length - 1) {
+      //     return d3.format('.0f')(d);
+      //   }
+      //   return d;
+      // },
+      // yTickSteps: d3.range(20, 50, 10),      
+      colorScaleRange: ["#000","#00ff00","#ff0e00"]
     };
 
     function chart(selection) {
@@ -26,37 +39,57 @@ export default () => ({
         // And pass our chart data.
 
         // "this" refers to the selection
-        // bbox is a convenient way to return your element's width and height
+        // bbox is a convenient way to return your element's width and height        
+
         const bbox = this.getBoundingClientRect();
         const { width } = bbox;
         const { height } = bbox;
         const margins = {
           top: 25,
           right: 30,
-          left: 30,
+          left: 70,
           bottom: 25,
         };
         const innerWidth = width - margins.right - margins.left;
         const innerHeight = height - margins.top - margins.bottom;
         const parseYear = d3.timeParse('%Y');
+        const parseTime = d3.timeParse("%m/%d/%y %H:%M");
+        const bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
         // Normalize data
-        const normData = data.map(arr => arr.map(d => ({
+        // array of array because you might have more than one series (multiple line chart)
+        const childData = data.map(d => ({
           x: props.xAccessor(d),
           y: props.yAccessor(d),
-          label: props.labelAccessor(d),
-        })));
+          y2: props.y2Accessor(d),
+          // label: props.labelAccessor(d),
+        }));
+
+        const normData = [childData];        
 
         // Calculate the extent (min/max) of our data
         // for both our x and y axes;
         const xExtent = d3.extent(
-          _.flatten(normData.map(arr => d3.extent(arr, d => parseYear(d.x)))),
+          _.flatten(normData.map(arr => d3.extent(arr, d => parseTime(d.x)))),
           d => d,
         );
+        // const yExtent = d3.extent(
+        //   _.flatten(normData.map(arr => d3.extent(arr, d => d.y))),
+        //   d => d,
+        // );      
+
         const yExtent = d3.extent(
-          _.flatten(normData.map(arr => d3.extent(arr, d => d.y))),
+          _.flatten(normData.map(arr => d3.extent(arr, d => (d.y-d.y2)))),
           d => d,
-        );
+        );      
+
+        var yExtent2 = []
+
+        if (Math.abs(yExtent[1]) > Math.abs(yExtent[0])) {
+          yExtent2 = [-yExtent[1],yExtent[1]]
+        } else {
+          yExtent2 = [yExtent[0],(yExtent[0]*-1)]
+        }
 
         // If an extent is not provided as a prop, default to the min/max of our data
         const xScale = d3.scaleTime()
@@ -64,25 +97,25 @@ export default () => ({
           .range([0, innerWidth]);
 
         const yScale = d3.scaleLinear()
-          .domain(yExtent)
+          .domain(yExtent2)
           .range([innerHeight, 0])
           .nice();
 
-        const colorScale = d3.scaleOrdinal()
-          .domain(_.flatten(normData.map(arr => arr.map(d => d.label))))
-          .range(d3.schemeCategory10);
-
         // Axes
         const xAxis = d3.axisBottom(xScale)
+          .tickFormat(props.xTickFormat)
           .tickPadding(0);
 
         const yAxis = d3.axisLeft(yScale)
+          .tickFormat(props.yTickFormat)
           .tickSize(-innerWidth - margins.left)
+          .tickValues(props.yTickSteps)
           .tickPadding(0);
 
         const line = d3.line()
-          .x(d => xScale(parseYear(d.x)))
-          .y(d => yScale(d.y));
+          .x(d => xScale(parseTime(d.x)))
+          .y(d => yScale((d.y-d.y2)));
+
 
         // Now, let's create our svg element using appendSelect!
         // appendSelect will either append an element that doesn't exist yet
@@ -107,6 +140,8 @@ export default () => ({
           .attr('transform', `translate(0,${innerHeight})`)
           .call(xAxis);
 
+        // console.log(normData)
+
         // Add our lines data
         const lines = g.selectAll('path.line')
           .data(normData);
@@ -116,7 +151,7 @@ export default () => ({
           .attr('class', 'line')
           .merge(lines)
           .attr('d', line)
-          .style('stroke', (arr, i) => colorScale((arr[i].label)));
+          .style('stroke', (arr, i) => "#ff00ff");
       });
     }
 
@@ -127,7 +162,6 @@ export default () => ({
     chart.props = (obj) => {
       if (!obj) return props;
       props = Object.assign(props, obj);
-      // console.log(props);
       return chart;
     };
     // Here's where we return our chart function

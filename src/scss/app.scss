@@ -1,19 +1,25 @@
 $lineChart-container: '#single-line-chart, #multiple-line-chart';
 
-#{$lineChart-container} {
+/* #{$lineChart-container} {*/
+.chart {
   font-family: helvetica;
   h3 {
     text-align: center;
   }
-  width: 100%;
-  max-width:600px;
-  height: 400px;
+  
+  // width: 100%;
+  // max-width:500px;
+  width: 50%;
+  height: 250px;
+  float: left;
+
+
   @media screen and (max-width: 450px) {
       height:250px;
   }
   path {
     fill: none;
-    stroke-width: 3px;
+    stroke-width: 2px;
   }
   .axis {
     path {
@@ -40,5 +46,5 @@ $lineChart-container: '#single-line-chart, #multiple-line-chart';
 }
 
 #multiple-line-chart {
-  margin-top: 80px;
+  // margin-top: 80px;
 }

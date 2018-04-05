@@ -14,9 +14,22 @@ export default () => ({
     // We set default chart properties in this object that users can overwrite
     // with a props object when they call their chart (We will do this in app.js).
     let props = {
-      xAccessor: d => d.year,
-      yAccessor: d => d.value,
-      labelAccessor: d => d.cat,
+      xAccessor: d => d.date,
+      yAccessor: d => null,
+      y2Accessor: d => null,
+      labelAccessor: null,
+      // xTickFormat: null,
+      // yTickFormat: null,
+      // yTickSteps: null,
+      // xTickFormat: d => `Q1 ${d3.timeFormat('%y')(d)}`,
+      // yTickFormat: (d, i, o) => {
+      //   if (i === o.length - 1) {
+      //     return d3.format('.0f')(d);
+      //   }
+      //   return d;
+      // },
+      // yTickSteps: d3.range(20, 50, 10),      
+      colorScaleRange: ["#ff00ff","#00ff80","#ff0e00"]
     };
 
     function chart(selection) {
@@ -26,37 +39,83 @@ export default () => ({
         // And pass our chart data.
 
         // "this" refers to the selection
-        // bbox is a convenient way to return your element's width and height
+        // bbox is a convenient way to return your element's width and height        
+
         const bbox = this.getBoundingClientRect();
         const { width } = bbox;
         const { height } = bbox;
         const margins = {
           top: 25,
           right: 30,
-          left: 30,
+          left: 70,
           bottom: 25,
         };
         const innerWidth = width - margins.right - margins.left;
         const innerHeight = height - margins.top - margins.bottom;
         const parseYear = d3.timeParse('%Y');
+        const parseTime = d3.timeParse("%m/%d/%y %H:%M");
+        const bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
         // Normalize data
-        const normData = data.map(arr => arr.map(d => ({
+        // array of array because you might have more than one series (multiple line chart)
+        const childData = data.map(d => ({
           x: props.xAccessor(d),
           y: props.yAccessor(d),
-          label: props.labelAccessor(d),
-        })));
+          // y: [props.yAccessor(d),props.y2Accessor(d)],
+          y2: props.y2Accessor(d),
+          // label: props.labelAccessor(d),
+        }));
+
+
+        // console.log(props)
+        // console.log(data)
+        // let props2 = {
+        //   yFullAccessor: d => [props.yAccessor(d),props.y2Accessor(d)]
+        // }
+
+        // const normData = data.map(arr => arr.map(d => ({
+        //   x: props.xAccessor(d),
+        //   y: props2.yFullAccessor(d),
+        //   label: props.labelAccessor(d),
+        // })));
+        var childData2 = []
+        // console.log(childData)
+        for (var i = 0; i < childData.length; i++) {
+          // console.log(normData[i])
+          // console.log(childData[i].y2)
+          var lilFella = {x: childData[i].x, y: childData[i].y2, label: "second"}
+          // console.log(lilFella)
+          childData2.push(lilFella)
+        }
+
+        const normData = [childData,childData2];        
+        // console.log(normData)
+
 
         // Calculate the extent (min/max) of our data
         // for both our x and y axes;
         const xExtent = d3.extent(
-          _.flatten(normData.map(arr => d3.extent(arr, d => parseYear(d.x)))),
+          _.flatten(normData.map(arr => d3.extent(arr, d => parseTime(d.x)))),
           d => d,
         );
+
         const yExtent = d3.extent(
           _.flatten(normData.map(arr => d3.extent(arr, d => d.y))),
           d => d,
-        );
+        );      
+
+        // const yExtent = d3.extent(
+        //   _.flatten(normData.map(arr => d3.extent(arr, d => (d.y-d.y2)))),
+        //   d => d,
+        // );      
+
+        // var yExtent2 = []
+
+        // if (Math.abs(yExtent[1]) > Math.abs(yExtent[0])) {
+        //   yExtent2 = [-yExtent[1],yExtent[1]]
+        // } else {
+        //   yExtent2 = [yExtent[0],(yExtent[0]*-1)]
+        // }
 
         // If an extent is not provided as a prop, default to the min/max of our data
         const xScale = d3.scaleTime()
@@ -70,19 +129,23 @@ export default () => ({
 
         const colorScale = d3.scaleOrdinal()
           .domain(_.flatten(normData.map(arr => arr.map(d => d.label))))
-          .range(d3.schemeCategory10);
+          .range(props.colorScaleRange);          
 
         // Axes
         const xAxis = d3.axisBottom(xScale)
+          .tickFormat(props.xTickFormat)
           .tickPadding(0);
 
         const yAxis = d3.axisLeft(yScale)
+          .tickFormat(props.yTickFormat)
           .tickSize(-innerWidth - margins.left)
-          .tickPadding(0);
+          .tickValues(props.yTickSteps)
+          .tickPadding(0);         
 
         const line = d3.line()
-          .x(d => xScale(parseYear(d.x)))
+          .x(d => xScale(parseTime(d.x)))
           .y(d => yScale(d.y));
+
 
         // Now, let's create our svg element using appendSelect!
         // appendSelect will either append an element that doesn't exist yet
@@ -99,13 +162,24 @@ export default () => ({
           .appendSelect('g', 'chart')
           .attr('transform', `translate(${margins.left}, ${margins.top})`);
 
+
         g.appendSelect('g', 'y axis')
           .attr('transform', 'translate(0, 0)')
-          .call(yAxis);
+          .call(yAxis)
+          .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 10)
+            .attr("x",10)
+            .attr("dy", "0.4em")
+            .attr("text-anchor", "middle")
+            .text("←Obra Kernodle IV       ___        Blossom Albuquerque→"); 
 
         g.appendSelect('g', 'x axis')
           .attr('transform', `translate(0,${innerHeight})`)
           .call(xAxis);
+
+        // console.log(normData)
 
         // Add our lines data
         const lines = g.selectAll('path.line')
@@ -127,7 +201,6 @@ export default () => ({
     chart.props = (obj) => {
       if (!obj) return props;
       props = Object.assign(props, obj);
-      // console.log(props);
       return chart;
     };
     // Here's where we return our chart function
