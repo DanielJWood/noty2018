@@ -19,35 +19,35 @@ import chart from './head2head';
 
 var bullNames = [
 ["Salami Blessing","Bernard Bumpus",[1,16]],
-["Duckens Nazon","Zeus de la Paz",[2,15]],
-["Habakkuk Baldonado","Armagedon Draughn",[3,14]],
+["Duckens Nazon","Zeus de la Paz",[8,9]],
+["Habakkuk Baldonado","Armagedon Draughn",[5,12]],
 ["Early Charlemagne","Miracle Crimes",[4,13]],
-["Tuna Altuna","Phlandrous Fleming,Jr.",[5,12]],
-["Mosthigh Thankgod","Fabulous Flournoy",[6,11]],
+["Tuna Altuna","Phlandrous Fleming,Jr.",[6,11]],
+["Mosthigh Thankgod","Fabulous Flournoy",[3,14]],
 ["Dr. Dimple Royalty","Jamez Brickhouse",[7,10]],
-["Jimbob Ghostkeeper","Travis Couture-Lovelady",[8,9]]
+["Jimbob Ghostkeeper","Travis Couture-Lovelady",[2,15]]
 ]
 
 var fruitNames = [
   ["Makenlove Petit-Fard", "Dr. Pitt Derryberry",[1,16]],
-  ["Babucarr Fatty", "Sparkle Hayter",[2,15]],
-  ["Shamoil Shipchandler", "Dr. Megha Panda",[3,14]],
+  ["Babucarr Fatty", "Sparkle Hayter",[8,9]],
+  ["Shamoil Shipchandler", "Dr. Megha Panda",[5,12]],
   ["Corky Booze", "Darwin Tabacco",[4,13]],
-  ["Dr. Birchann Paffenbarger", "Covadonga del Busto Naval",[5,12]],
-  ["Blossom Albuquerque", "Obra Kernodle IV",[6,11]],
+  ["Dr. Birchann Paffenbarger", "Covadonga del Busto Naval",[6,11]],
+  ["Blossom Albuquerque", "Obra Kernodle IV",[3,14]],
   ["SirZion Dance", "Devoid Couch",[7,10]],
-  ["Rev. Dongo Pewee", "Jempy Drucker",[8,9]]
+  ["Rev. Dongo Pewee", "Jempy Drucker",[2,15]]
 ]
 
 var dragonNames = [
   ["La Royce Lobster-Gaines","Christine Plentyhoops",[1,16]],
-  ["Darthvader Williamson","Delicious Peters",[2,15]],
-  ["Lola Honeybone","Chosen Roach",[3,14]],
+  ["Darthvader Williamson","Delicious Peters",[8,9]],
+  ["Lola Honeybone","Chosen Roach",[5,12]],
   ["Chardonnay Beaver","Maverik Buffo",[4,13]],
-  ["Crystal Patriarche","Forbes Thor Kiddoo",[5,12]],
-  ["Quindarious Gooch","Mike Diaper",[6,11]],
+  ["Crystal Patriarche","Forbes Thor Kiddoo",[6,11]],
+  ["Quindarious Gooch","Mike Diaper",[3,14]],
   ["Candida Seasock","Adele Gorrilla",[7,10]],
-  ["Ceejhay French-Love","YoHeinz Tyler",[8,9]]
+  ["Ceejhay French-Love","YoHeinz Tyler",[2,15]]
 ];
 
 d3.queue()
