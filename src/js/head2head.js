@@ -174,8 +174,6 @@ export default () => ({
           .attr('transform', `translate(0,${innerHeight})`)
           // .call(xAxis);
 
-        // console.log(normData)
-
         // Add our lines data
         const lines = g.selectAll('path.line')
           .data(normData);
@@ -186,6 +184,21 @@ export default () => ({
           .merge(lines)
           .attr('d', line)
           .style('stroke', (arr, i) => colorScale((arr[i].label)));
+
+
+        g.appendSelect('text','margin')
+          .attr('transform', `translate(${innerWidth-75},${innerHeight-10})`)
+          .text(function(d,i){
+            return "Margin: " + (Math.abs(+d[d.length-1][props.yName()].replace(/,/g, "")-+d[d.length-1][props.y2Name()].replace(/,/g, "")))
+          })
+          .attr("fill",function(d){
+            if (+d[d.length-1][props.yName()].replace(/,/g, "")-+d[d.length-1][props.y2Name()].replace(/,/g, "") > 0) {
+              return colorScale("first")
+            } else {
+              return colorScale("second")
+            }
+          })
+          
       });
     }
 
