@@ -61,23 +61,46 @@ var chrotchNames = [
   ["Shaka Licorish","Tuesday DerMargosian",[2,15]]
 ];
 
+var round21Names = [
+["Salami Blessing","Duckens Nazon",[1,8]],
+["Armagedon Draughn","Miracle Crimes",[12,13]],
+["Tuna Altuna","Mosthigh Thankgod",[6,3]],
+["Dr. Dimple Royalty","Jimbob Ghostkeeper",[7,2]],
+["Makenlove Petit-Fard","Sparkle Hayter",[1,9]],
+["Dr. Megha Panda","Corky Booze",[12,4]],
+["Covadonga del Busto Naval","Obra Kernodle IV",[11,14]],
+["Devoid Couch","Rev. Dongo Pewee",[10,2]]
+]
 
 d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/fruithandler_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/bulltron_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/dragonwagon_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/chrotchtangle_regional.csv")    
+    .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_1.csv")    
     .await(ready);
 
-function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle) {
+function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1) {
 
   var timetime = document.getElementById("time")
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
-  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(dragonwagon[dragonwagon.length - 1].date),-4));
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round2_1[round2_1.length - 1].date),-4));
 
   // Declare our charts
+
+  // Round 2
+  const myRound210 = new chart();
+  const myRound211 = new chart();
+  const myRound212 = new chart();
+  const myRound213 = new chart();
+  const myRound214 = new chart();
+  const myRound215 = new chart();
+  const myRound216 = new chart();
+  const myRound217 = new chart();
+
+  // Round 1
   const myFruit0 = new chart();
   const myFruit1 = new chart();
   const myFruit2 = new chart();
@@ -105,17 +128,100 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle) {
   const myDragon6 = new chart();
   const myDragon7 = new chart();
 
-const myChrotch0 = new chart();
-const myChrotch1 = new chart();
-const myChrotch2 = new chart();
-const myChrotch3 = new chart();
-const myChrotch4 = new chart();
-const myChrotch5 = new chart();
-const myChrotch6 = new chart();
-const myChrotch7 = new chart();
+  const myChrotch0 = new chart();
+  const myChrotch1 = new chart();
+  const myChrotch2 = new chart();
+  const myChrotch3 = new chart();
+  const myChrotch4 = new chart();
+  const myChrotch5 = new chart();
+  const myChrotch6 = new chart();
+  const myChrotch7 = new chart();
 
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
+
+// round 2
+  myRound210.create('#round2-1-0', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[0][0],
+    y2Name: d => round21Names[0][1],
+    rank: d => round21Names[0][2],
+    yAccessor: d => (d[round21Names[0][0]] == undefined) ? -10 : +d[round21Names[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[0][1]] == undefined) ? -10 : +d[round21Names[0][1]].replace(/,/g, "")
+  });
+
+  myRound211.create('#round2-1-1', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[1][0],
+    y2Name: d => round21Names[1][1],
+    rank: d => round21Names[1][2],
+    yAccessor: d => (d[round21Names[1][0]] == undefined) ? -10 : +d[round21Names[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[1][1]] == undefined) ? -10 : +d[round21Names[1][1]].replace(/,/g, "")
+  });
+
+  myRound212.create('#round2-1-2', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[2][0],
+    y2Name: d => round21Names[2][1],
+    rank: d => round21Names[2][2],
+    yAccessor: d => (d[round21Names[2][0]] == undefined) ? -10 : +d[round21Names[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[2][1]] == undefined) ? -10 : +d[round21Names[2][1]].replace(/,/g, "")
+  });
+
+  myRound213.create('#round2-1-3', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[3][0],
+    y2Name: d => round21Names[3][1],
+    rank: d => round21Names[3][2],
+    yAccessor: d => (d[round21Names[3][0]] == undefined) ? -10 : +d[round21Names[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[3][1]] == undefined) ? -10 : +d[round21Names[3][1]].replace(/,/g, "")
+  });
+
+  myRound214.create('#round2-1-4', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[4][0],
+    y2Name: d => round21Names[4][1],
+    rank: d => round21Names[4][2],
+    yAccessor: d => (d[round21Names[4][0]] == undefined) ? -10 : +d[round21Names[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[4][1]] == undefined) ? -10 : +d[round21Names[4][1]].replace(/,/g, "")
+  });
+
+  myRound215.create('#round2-1-5', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[5][0],
+    y2Name: d => round21Names[5][1],
+    rank: d => round21Names[5][2],
+    yAccessor: d => (d[round21Names[5][0]] == undefined) ? -10 : +d[round21Names[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[5][1]] == undefined) ? -10 : +d[round21Names[5][1]].replace(/,/g, "")
+  });
+
+  myRound216.create('#round2-1-6', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[6][0],
+    y2Name: d => round21Names[6][1],
+    rank: d => round21Names[6][2],
+    yAccessor: d => (d[round21Names[6][0]] == undefined) ? -10 : +d[round21Names[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[6][1]] == undefined) ? -10 : +d[round21Names[6][1]].replace(/,/g, "")
+  });
+
+  myRound217.create('#round2-1-7', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[7][0],
+    y2Name: d => round21Names[7][1],
+    rank: d => round21Names[7][2],
+    yAccessor: d => (d[round21Names[7][0]] == undefined) ? -10 : +d[round21Names[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[7][1]] == undefined) ? -10 : +d[round21Names[7][1]].replace(/,/g, "")
+  });
+
+// round 1
   myFruit0.create('#fruit0', fruithandler, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
     // See above in single chart for changing the props
