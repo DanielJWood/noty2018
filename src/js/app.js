@@ -12,6 +12,7 @@ import updateLine from '../data/update.json';
 // import chart from './file-5';
 // import chart from './file-6';
 import chart from './head2head';
+import plusminus from './plus-minus';
 
 // import chart from './chart';
 // const parseYear = d3.timeParse('%Y');
@@ -102,6 +103,9 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
 
   // Declare our charts
 
+  // 
+  const myTunaGod = new plusminus();
+
   // Round 2
   const myRound210 = new chart();
   const myRound211 = new chart();
@@ -161,7 +165,16 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
 
-// round 2
+  myTunaGod.create('#tunagod', round2_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round21Names[2][0],
+    y2Name: d => round21Names[2][1],
+    rank: d => round21Names[2][2],
+    yAccessor: d => (d[round21Names[2][0]] == undefined) ? -10 : +d[round21Names[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round21Names[2][1]] == undefined) ? -10 : +d[round21Names[2][1]].replace(/,/g, "")
+  });
+
 
 // round 2
   myRound220.create('#round2-2-0', round2_2, {
@@ -701,7 +714,7 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
     myRound225.resize()
     myRound226.resize()
     myRound227.resize()
-
+    myTunaGod.resize()
 
     // myFruit8.resize()    
   }, 400);

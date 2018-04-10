@@ -47,7 +47,7 @@ export default () => ({
         const margins = {
           top: 25,
           right: 30,
-          left: 70,
+          left: 100,
           bottom: 25,
         };
         const innerWidth = width - margins.right - margins.left;
@@ -62,6 +62,8 @@ export default () => ({
           x: props.xAccessor(d),
           y: props.yAccessor(d),
           y2: props.y2Accessor(d),
+          yName: props.yName(d),
+          y2Name: props.y2Name(d)
           // label: props.labelAccessor(d),
         }));
 
@@ -85,11 +87,16 @@ export default () => ({
 
         var yExtent2 = []
 
+
+        
+
         if (Math.abs(yExtent[1]) > Math.abs(yExtent[0])) {
           yExtent2 = [-yExtent[1],yExtent[1]]
         } else {
           yExtent2 = [yExtent[0],(yExtent[0]*-1)]
         }
+
+// console.log(yExtent2)
 
         // If an extent is not provided as a prop, default to the min/max of our data
         const xScale = d3.scaleTime()
@@ -104,13 +111,13 @@ export default () => ({
         // Axes
         const xAxis = d3.axisBottom(xScale)
           .tickFormat(props.xTickFormat)
-          .tickPadding(0);
+          .tickPadding(5);
 
         const yAxis = d3.axisLeft(yScale)
           .tickFormat(props.yTickFormat)
-          .tickSize(-innerWidth - margins.left)
+          .tickSize(-innerWidth )
           .tickValues(props.yTickSteps)
-          .tickPadding(0);
+          .tickPadding(20);
 
         const line = d3.line()
           .x(d => xScale(parseTime(d.x)))
@@ -134,11 +141,31 @@ export default () => ({
 
         g.appendSelect('g', 'y axis')
           .attr('transform', 'translate(0, 0)')
-          .call(yAxis);
+          .call(yAxis)
+          
+        g.appendSelect("text","label")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -50)
+            .attr("x",`-${innerHeight}`)
+            .attr("dy", "0.4em")
+            .attr("text-anchor", "start")
+            .text("←Mosthigh Thankgod");
+     
+        g.appendSelect("text","label2")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -50)
+            .attr("x",10)
+            .attr("dy", "0.4em")
+            .attr("text-anchor", "end")
+            .text("Tuna Altuna→");            
 
         g.appendSelect('g', 'x axis')
-          .attr('transform', `translate(0,${innerHeight})`)
+          .attr('transform', `translate(0,${innerHeight/2})`)
           .call(xAxis);
+
+        // g.appendSelect('g', 'midline')
 
         // console.log(normData)
 
