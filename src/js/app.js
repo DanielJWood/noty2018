@@ -62,14 +62,25 @@ var chrotchNames = [
 ];
 
 var round21Names = [
-["Salami Blessing","Duckens Nazon",[1,8]],
-["Armagedon Draughn","Miracle Crimes",[12,13]],
-["Tuna Altuna","Mosthigh Thankgod",[6,3]],
-["Dr. Dimple Royalty","Jimbob Ghostkeeper",[7,2]],
-["Makenlove Petit-Fard","Sparkle Hayter",[1,9]],
-["Dr. Megha Panda","Corky Booze",[12,4]],
-["Covadonga del Busto Naval","Obra Kernodle IV",[11,14]],
-["Devoid Couch","Rev. Dongo Pewee",[10,2]]
+  ["Salami Blessing","Duckens Nazon",[1,8]],
+  ["Armagedon Draughn","Miracle Crimes",[12,13]],
+  ["Tuna Altuna","Mosthigh Thankgod",[6,3]],
+  ["Dr. Dimple Royalty","Jimbob Ghostkeeper",[7,2]],
+  ["Makenlove Petit-Fard","Sparkle Hayter",[1,9]],
+  ["Dr. Megha Panda","Corky Booze",[12,4]],
+  ["Covadonga del Busto Naval","Obra Kernodle IV",[11,14]],
+  ["Devoid Couch","Rev. Dongo Pewee",[10,2]]
+]
+
+var round22Names = [
+  ["La Royce Lobster-Gaines","Delicious Peters",[1,9]],
+  ["Chosen Roach","Chardonnay Beaver",[12,4]],
+  ["Forbes Thor Kiddoo","Quindarious Gooch",[11,3]],
+  ["Candida Seasock","YoHeinz Tyler",[7,15]],
+  ["Dr. Narwhals Mating","Mahogany Loggins",[1,9]],
+  ["Rev. Hobbit Forrest","Beau Titsworth",[5,4]],
+  ["Hallelujah Lulie","Dr. Taekwondo Byrd",[11,3]],
+  ["Gandalf Hernandez","Shaka Licorish",[10,2]]
 ]
 
 d3.queue()
@@ -78,15 +89,16 @@ d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/dragonwagon_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/chrotchtangle_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_1.csv")    
+    .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_2.csv")    
     .await(ready);
 
-function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1) {
+function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2) {
 
   var timetime = document.getElementById("time")
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
-  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round2_1[round2_1.length - 1].date),-4));
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round2_2[round2_2.length - 1].date),-4));
 
   // Declare our charts
 
@@ -99,6 +111,15 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   const myRound215 = new chart();
   const myRound216 = new chart();
   const myRound217 = new chart();
+
+  const myRound220 = new chart();
+  const myRound221 = new chart();
+  const myRound222 = new chart();
+  const myRound223 = new chart();
+  const myRound224 = new chart();
+  const myRound225 = new chart();
+  const myRound226 = new chart();
+  const myRound227 = new chart();
 
   // Round 1
   const myFruit0 = new chart();
@@ -141,6 +162,89 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   // It needs a selection string (html element), data and our custom props object.
 
 // round 2
+
+// round 2
+  myRound220.create('#round2-2-0', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[0][0],
+    y2Name: d => round22Names[0][1],
+    rank: d => round22Names[0][2],
+    yAccessor: d => (d[round22Names[0][0]] == undefined) ? -10 : +d[round22Names[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[0][1]] == undefined) ? -10 : +d[round22Names[0][1]].replace(/,/g, "")
+  });
+
+  myRound221.create('#round2-2-1', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[1][0],
+    y2Name: d => round22Names[1][1],
+    rank: d => round22Names[1][2],
+    yAccessor: d => (d[round22Names[1][0]] == undefined) ? -10 : +d[round22Names[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[1][1]] == undefined) ? -10 : +d[round22Names[1][1]].replace(/,/g, "")
+  });
+
+  myRound222.create('#round2-2-2', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[2][0],
+    y2Name: d => round22Names[2][1],
+    rank: d => round22Names[2][2],
+    yAccessor: d => (d[round22Names[2][0]] == undefined) ? -10 : +d[round22Names[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[2][1]] == undefined) ? -10 : +d[round22Names[2][1]].replace(/,/g, "")
+  });
+
+  myRound223.create('#round2-2-3', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[3][0],
+    y2Name: d => round22Names[3][1],
+    rank: d => round22Names[3][2],
+    yAccessor: d => (d[round22Names[3][0]] == undefined) ? -10 : +d[round22Names[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[3][1]] == undefined) ? -10 : +d[round22Names[3][1]].replace(/,/g, "")
+  });
+
+  myRound224.create('#round2-2-4', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[4][0],
+    y2Name: d => round22Names[4][1],
+    rank: d => round22Names[4][2],
+    yAccessor: d => (d[round22Names[4][0]] == undefined) ? -10 : +d[round22Names[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[4][1]] == undefined) ? -10 : +d[round22Names[4][1]].replace(/,/g, "")
+  });
+
+  myRound225.create('#round2-2-5', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[5][0],
+    y2Name: d => round22Names[5][1],
+    rank: d => round22Names[5][2],
+    yAccessor: d => (d[round22Names[5][0]] == undefined) ? -10 : +d[round22Names[5][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[5][1]] == undefined) ? -10 : +d[round22Names[5][1]].replace(/,/g, "")
+  });
+
+  myRound226.create('#round2-2-6', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[6][0],
+    y2Name: d => round22Names[6][1],
+    rank: d => round22Names[6][2],
+    yAccessor: d => (d[round22Names[6][0]] == undefined) ? -10 : +d[round22Names[6][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[6][1]] == undefined) ? -10 : +d[round22Names[6][1]].replace(/,/g, "")
+  });
+
+  myRound227.create('#round2-2-7', round2_2, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round22Names[7][0],
+    y2Name: d => round22Names[7][1],
+    rank: d => round22Names[7][2],
+    yAccessor: d => (d[round22Names[7][0]] == undefined) ? -10 : +d[round22Names[7][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[7][1]] == undefined) ? -10 : +d[round22Names[7][1]].replace(/,/g, "")
+  });
+
+
   myRound210.create('#round2-1-0', round2_1, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
     // See above in single chart for changing the props
@@ -573,6 +677,32 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
     myDragon5.resize()
     myDragon6.resize()
     myDragon7.resize()
+    myChrotch0.resize()
+    myChrotch1.resize()
+    myChrotch2.resize()
+    myChrotch3.resize()
+    myChrotch4.resize()
+    myChrotch5.resize()
+    myChrotch6.resize()
+    myChrotch7.resize()
+    myRound210.resize()
+    myRound211.resize()
+    myRound212.resize()
+    myRound213.resize()
+    myRound214.resize()
+    myRound215.resize()
+    myRound216.resize()
+    myRound217.resize()
+    myRound220.resize()
+    myRound221.resize()
+    myRound222.resize()
+    myRound223.resize()
+    myRound224.resize()
+    myRound225.resize()
+    myRound226.resize()
+    myRound227.resize()
+
+
     // myFruit8.resize()    
   }, 400);
 
