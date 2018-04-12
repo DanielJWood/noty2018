@@ -165,14 +165,14 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
 
-  myTunaGod.create('#tunagod', round2_1, {
+  myTunaGod.create('#tunagod', round2_2, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
     // See above in single chart for changing the props
-    yName: d => round21Names[2][0],
-    y2Name: d => round21Names[2][1],
-    rank: d => round21Names[2][2],
-    yAccessor: d => (d[round21Names[2][0]] == undefined) ? -10 : +d[round21Names[2][0]].replace(/,/g, ""),
-    y2Accessor: d => (d[round21Names[2][1]] == undefined) ? -10 : +d[round21Names[2][1]].replace(/,/g, "")
+    yName: d => round22Names[3][0],
+    y2Name: d => round22Names[3][1],
+    rank: d => round22Names[3][2],
+    yAccessor: d => (d[round22Names[3][0]] == undefined) ? -10 : +d[round22Names[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round22Names[3][1]] == undefined) ? -10 : +d[round22Names[3][1]].replace(/,/g, "")
   });
 
 

@@ -150,7 +150,7 @@ export default () => ({
             .attr("x",`-${innerHeight}`)
             .attr("dy", "0.4em")
             .attr("text-anchor", "start")
-            .text("←Mosthigh Thankgod");
+            .text("←Yo'Heinz Taylor");
      
         g.appendSelect("text","label2")
             .attr("fill", "#000")
@@ -159,7 +159,7 @@ export default () => ({
             .attr("x",10)
             .attr("dy", "0.4em")
             .attr("text-anchor", "end")
-            .text("Tuna Altuna→");            
+            .text("Candida Seasock→");            
 
         g.appendSelect('g', 'x axis')
           .attr('transform', `translate(0,${innerHeight/2})`)
