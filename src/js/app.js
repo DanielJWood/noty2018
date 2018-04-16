@@ -112,11 +112,11 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
-  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round2_2[round2_2.length - 1].date),-4));
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round3_1[round3_1.length - 1].date),-4));
 
   // Declare our charts
 
-    const myRound310 = new chart();
+  const myRound310 = new chart();
   const myRound311 = new chart();
   const myRound312 = new chart();
   const myRound313 = new chart();
@@ -124,7 +124,6 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   const myRound315 = new chart();
   const myRound316 = new chart();
   const myRound317 = new chart();
-
 
   // 
   const myTunaGod = new plusminus();
@@ -273,14 +272,14 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
 
 // special
 
-  myTunaGod.create('#tunagod', round2_2, {
+  myTunaGod.create('#tunagod', round3_1, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
     // See above in single chart for changing the props
-    yName: d => round22Names[3][0],
-    y2Name: d => round22Names[3][1],
-    rank: d => round22Names[3][2],
-    yAccessor: d => (d[round22Names[3][0]] == undefined) ? -10 : +d[round22Names[3][0]].replace(/,/g, ""),
-    y2Accessor: d => (d[round22Names[3][1]] == undefined) ? -10 : +d[round22Names[3][1]].replace(/,/g, "")
+    yName: d => round31Names[4][0],
+    y2Name: d => round31Names[4][1],
+    rank: d => round31Names[4][2],
+    yAccessor: d => (d[round31Names[4][0]] == undefined) ? -10 : +d[round31Names[4][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round31Names[4][1]] == undefined) ? -10 : +d[round31Names[4][1]].replace(/,/g, "")
   });
 
 
