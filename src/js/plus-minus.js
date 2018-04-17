@@ -13,6 +13,7 @@ export default () => ({
     // This is our props object.
     // We set default chart properties in this object that users can overwrite
     // with a props object when they call their chart (We will do this in app.js).
+
     let props = {
       xAccessor: d => d.date,
       yAccessor: d => null,
@@ -150,7 +151,7 @@ export default () => ({
             .attr("x",`-${innerHeight}`)
             .attr("dy", "0.4em")
             .attr("text-anchor", "start")
-            .text("←Chardonnay Beaver");
+            .text("←Quindarious Gooch");
      
         g.appendSelect("text","label2")
             .attr("fill", "#000")

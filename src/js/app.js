@@ -17,6 +17,7 @@ import plusminus from './plus-minus';
 // import chart from './chart';
 // const parseYear = d3.timeParse('%Y');
 // Declare our singleLine chart module
+var ranks = {"Salami Blessing":1,"Bernard Bumpus":16,"Duckens Nazon":8,"Zeus de la Paz":9,"Habakkuk Baldonado":5,"Armagedon Draughn":12,"Early Charlemagne":4,"Miracle Crimes":13,"Tuna Altuna":6,"Phlandrous Fleming,Jr.":11,"Mosthigh Thankgod":3,"Fabulous Flournoy":14,"Dr. Dimple Royalty":7,"Jamez Brickhouse":10,"Jimbob Ghostkeeper":2,"Travis Couture-Lovelady":15,"Makenlove Petit-Fard":1,"Dr. Pitt Derryberry":16,"Babucarr Fatty":8,"Sparkle Hayter":9,"Shamoil Shipchandler":5,"Dr. Megha Panda":12,"Corky Booze":4,"Darwin Tabacco":13,"Dr. Birchann Paffenbarger":6,"Covadonga del Busto Naval":11,"Blossom Albuquerque":3,"Obra Kernodle IV":14,"SirZion Dance":7,"Devoid Couch":10,"Rev. Dongo Pewee":2,"Jempy Drucker":15,"La Royce Lobster-Gaines":1,"Christine Plentyhoops":16,"Darthvader Williamson":8,"Delicious Peters":9,"Lola Honeybone":5,"Chosen Roach":12,"Chardonnay Beaver":4,"Maverik Buffo":13,"Crystal Patriarche":6,"Forbes Thor Kiddoo":11,"Quindarious Gooch":3,"Mike Diaper":14,"Candida Seasock":7,"Adele Gorrilla":10,"Ceejhay French-Love":2,"YoHeinz Tyler":15,"Dr. Narwhals Mating":1,"Clinton Bacon":16,"Bramble Klipple":8,"Mahogany Loggins":9,"Rev. Hobbit Forrest":5,"Genuine Potts":12,"Beau Titsworth":4,"Palestine Ace":13,"Sixto Cancel":6,"Hallelujah Lulie":11,"Dr. Taekwondo Byrd":3,"Bucky Worboys":14,"Lukas Chalupa":7,"Gandalf Hernandez":10,"Shaka Licorish":2,"Tuesday DerMargosian":15};
 
 var bullNames = [
 ["Salami Blessing","Bernard Bumpus",[1,16]],
@@ -120,6 +121,9 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
   timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round4_1[round4_1.length - 1].date),-4));
+
+  var dataRollup = compileData(fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1);
+  console.log(dataRollup)
 
   // Declare our charts
 
@@ -326,14 +330,14 @@ myRound410.create('#round4-1-0', round4_1, {
 
 // special
 
-  myTunaGod.create('#tunagod', round3_1, {
+  myTunaGod.create('#tunagod', round4_1, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
     // See above in single chart for changing the props
-    yName: d => round31Names[4][0],
-    y2Name: d => round31Names[4][1],
-    rank: d => round31Names[4][2],
-    yAccessor: d => (d[round31Names[4][0]] == undefined) ? -10 : +d[round31Names[4][0]].replace(/,/g, ""),
-    y2Accessor: d => (d[round31Names[4][1]] == undefined) ? -10 : +d[round31Names[4][1]].replace(/,/g, "")
+    yName: d => round41Names[2][0],
+    y2Name: d => round41Names[2][1],
+    rank: d => round41Names[2][2],
+    yAccessor: d => (d[round41Names[2][0]] == undefined) ? -10 : +d[round41Names[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round41Names[2][1]] == undefined) ? -10 : +d[round41Names[2][1]].replace(/,/g, "")
   });
 
 
@@ -875,6 +879,18 @@ myRound410.create('#round4-1-0', round4_1, {
     myRound225.resize()
     myRound226.resize()
     myRound227.resize()
+    myRound310.resize()
+    myRound311.resize()
+    myRound312.resize()
+    myRound313.resize()
+    myRound314.resize()
+    myRound315.resize()
+    myRound316.resize()
+    myRound317.resize()
+    myRound410.resize()
+    myRound411.resize()
+    myRound412.resize()
+    myRound413.resize()
     myTunaGod.resize()
 
     // myFruit8.resize()    
@@ -883,6 +899,46 @@ myRound410.create('#round4-1-0', round4_1, {
   window.addEventListener('resize', () => {
     resizeDb();
   });
+}
+
+function compileData(a,b,c,d,e,f,g,h) {
+  var allData = [a,b,c,d,e,f,g,h]
+
+  var finalData = [];
+
+  for (var i = 0; i < allData.length; i++) {
+    var Datalength = allData[i].length - 1;
+    // console.log(allData[i][Datalength])    
+    var j = 0;
+    for (var item in allData[i][Datalength]) {      
+      j+=1;
+      if (item != "date") {
+
+        if (j % 2 == 0) {
+          
+
+          finalData.push({
+            "name1":  item,
+            "name2":  0,
+            "rank1":  ranks[item],
+            "rank2":  0,
+            "vote1":  +allData[i][Datalength][item].replace(/,/g, ""),
+            "vote2":  0,
+            "round":  i,
+            "index":  j/2
+          })
+        }
+        else {
+          finalData[finalData.length-1].name2 = item;
+          finalData[finalData.length-1].rank2 = ranks[item];
+          finalData[finalData.length-1].vote2 = +allData[i][Datalength][item].replace(/,/g, "");
+        }
+        
+      }
+    }
+  }
+
+  return finalData;
 }
 
 // request('https://s3-us-west-2.amazonaws.com/energy2/social/fruithandler_regional.csv', function (error, response, body) {
