@@ -93,8 +93,14 @@ var round31Names = [
   ["Quindarious Gooch","Candida Seasock",[3,7]],
   ["Dr. Narwhals Mating","Beau Titsworth",[1,4]],
   ["Dr. Taekwondo Byrd","Gandalf Hernandez",[3,10]]
-]
-;
+];
+
+var round41Names = [
+  ["Salami Blessing","Jimbob Ghostkeeper",[1,2]],
+  ["Makenlove Petit-Fard","Rev. Dongo Pewee",[1,2]],
+  ["Delicious Peters","Quindarious Gooch",[9,3]],
+  ["Dr. Narwhals Mating","Gandalf Hernandez",[1,10]]
+];
 
 d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/fruithandler_regional.csv")    
@@ -104,18 +110,26 @@ d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_1.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_2.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round3_1.csv")    
+    .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round4_1.csv")    
     .await(ready);
 
-function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1) {
+function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1) {
 
   var timetime = document.getElementById("time")
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
-  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round3_1[round3_1.length - 1].date),-4));
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round4_1[round4_1.length - 1].date),-4));
 
   // Declare our charts
 
+  //round4
+  const myRound410 = new chart();
+  const myRound411 = new chart();
+  const myRound412 = new chart();
+  const myRound413 = new chart();
+
+  //round3
   const myRound310 = new chart();
   const myRound311 = new chart();
   const myRound312 = new chart();
@@ -186,9 +200,49 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
 
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
+// #round 4
+
+myRound410.create('#round4-1-0', round4_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round41Names[0][0],
+    y2Name: d => round41Names[0][1],
+    rank: d => round41Names[0][2],
+    yAccessor: d => (d[round41Names[0][0]] == undefined) ? -10 : +d[round41Names[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round41Names[0][1]] == undefined) ? -10 : +d[round41Names[0][1]].replace(/,/g, "")
+  });
+
+  myRound411.create('#round4-1-1', round4_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round41Names[1][0],
+    y2Name: d => round41Names[1][1],
+    rank: d => round41Names[1][2],
+    yAccessor: d => (d[round41Names[1][0]] == undefined) ? -10 : +d[round41Names[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round41Names[1][1]] == undefined) ? -10 : +d[round41Names[1][1]].replace(/,/g, "")
+  });
+
+  myRound412.create('#round4-1-2', round4_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round41Names[2][0],
+    y2Name: d => round41Names[2][1],
+    rank: d => round41Names[2][2],
+    yAccessor: d => (d[round41Names[2][0]] == undefined) ? -10 : +d[round41Names[2][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round41Names[2][1]] == undefined) ? -10 : +d[round41Names[2][1]].replace(/,/g, "")
+  });
+
+  myRound413.create('#round4-1-3', round4_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round41Names[3][0],
+    y2Name: d => round41Names[3][1],
+    rank: d => round41Names[3][2],
+    yAccessor: d => (d[round41Names[3][0]] == undefined) ? -10 : +d[round41Names[3][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round41Names[3][1]] == undefined) ? -10 : +d[round41Names[3][1]].replace(/,/g, "")
+  });
 
 //round 3
-
 
   myRound310.create('#round3-1-0', round3_1, {
     // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)

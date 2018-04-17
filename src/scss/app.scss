@@ -30,7 +30,7 @@ h1,h2,h3 {
 .region {
   text-align: center;
   margin-top: 50px;
-  height: 450px;
+  // height: 450px;
 }
 
 /* #{$lineChart-container} {*/
@@ -54,6 +54,11 @@ h1,h2,h3 {
   width: 25%;
   height: 300px;
   float: left;
+  
+  &.large {
+    width: 50%;
+    // height: 500px;
+  }
 
   &.diff {
     width: 100%;
