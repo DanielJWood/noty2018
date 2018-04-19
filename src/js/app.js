@@ -13,6 +13,7 @@ import updateLine from '../data/update.json';
 // import chart from './file-6';
 import chart from './head2head';
 import plusminus from './plus-minus';
+import compare from './compare';
 
 // import chart from './chart';
 // const parseYear = d3.timeParse('%Y');
@@ -123,7 +124,25 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round4_1[round4_1.length - 1].date),-4));
 
   var dataRollup = compileData(fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1);
-  console.log(dataRollup)
+
+  dataRollup.sort(function(x, y){
+   return d3.ascending(Math.abs(x.vote1-x.vote2), Math.abs(y.vote1-y.vote2));
+  });
+
+  const myCompare = new compare();
+
+  myCompare.create('#compare', dataRollup, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    // yName: (d, i, o) => {
+    //   console.log(d)
+    //   console.log(i)
+    //   console.log(o)
+    //   console.log(dataRollup)
+    //   return dataRollup
+    // }
+
+  });
 
   // Declare our charts
 
@@ -937,7 +956,7 @@ function compileData(a,b,c,d,e,f,g,h) {
       }
     }
   }
-
+  console.log(finalData)
   return finalData;
 }
 

@@ -59,6 +59,11 @@ h1,h2,h3 {
     width: 50%;
     // height: 500px;
   }
+  
+  &.comp {
+    width: 100%;
+    height: 500px;
+  }
 
   &.diff {
     width: 100%;
@@ -72,6 +77,10 @@ h1,h2,h3 {
       }
     }
 
+  }
+
+  circle {
+    cursor: pointer;
   }
 
   @media screen and (max-width: 700px) {
