@@ -104,6 +104,11 @@ var round41Names = [
   ["Dr. Narwhals Mating","Gandalf Hernandez",[1,10]]
 ];
 
+var round51Names = [
+  ["Delicious Peters","Dr. Narwhals Mating",[9,1]],
+  ["Jimbob Ghostkeeper","Makenlove Petit-Fard",[2,1]]  
+]
+
 d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/fruithandler_regional.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/bulltron_regional.csv")    
@@ -113,17 +118,18 @@ d3.queue()
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round2_2.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round3_1.csv")    
     .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round4_1.csv")    
+    .defer(d3.csv, "https://s3-us-west-2.amazonaws.com/energy2/social/round5_1.csv")    
     .await(ready);
 
-function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1) {
+function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1,round5_1) {
 
   var timetime = document.getElementById("time")
   const parseTime = d3.timeParse("%m/%d/%y %H:%M")
   const formatTime = d3.timeFormat("%H:%M (EDT), %B %d, %Y");
 
-  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round4_1[round4_1.length - 1].date),-4));
+  timetime.innerHTML = formatTime(d3.timeHour.offset(parseTime(round5_1[round5_1.length - 1].date),-4));
 
-  var dataRollup = compileData(fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1);
+  var dataRollup = compileData(fruithandler, bulltron, dragonwagon, chrotchtangle, round2_1, round2_2,round3_1,round4_1,round5_1);
 
   dataRollup.sort(function(x, y){
    return d3.ascending(Math.abs(x.vote1-x.vote2), Math.abs(y.vote1-y.vote2));
@@ -145,6 +151,9 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
   });
 
   // Declare our charts
+
+  const myRound510 = new chart();
+  const myRound511 = new chart();
 
   //round4
   const myRound410 = new chart();
@@ -223,6 +232,27 @@ function ready(error, fruithandler, bulltron, dragonwagon, chrotchtangle, round2
 
   // This is the initial draw, using our create method.
   // It needs a selection string (html element), data and our custom props object.
+
+  myRound510.create('#round5-1-0', round5_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round51Names[0][0],
+    y2Name: d => round51Names[0][1],
+    rank: d => round51Names[0][2],
+    yAccessor: d => (d[round51Names[0][0]] == undefined) ? -10 : +d[round51Names[0][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round51Names[0][1]] == undefined) ? -10 : +d[round51Names[0][1]].replace(/,/g, "")
+  });
+
+  myRound511.create('#round5-1-1', round5_1, {
+    // This is where you would overwrite props to change the name of the data to match your unique data (in this case multipleLine)
+    // See above in single chart for changing the props
+    yName: d => round51Names[1][0],
+    y2Name: d => round51Names[1][1],
+    rank: d => round51Names[1][2],
+    yAccessor: d => (d[round51Names[1][0]] == undefined) ? -10 : +d[round51Names[1][0]].replace(/,/g, ""),
+    y2Accessor: d => (d[round51Names[1][1]] == undefined) ? -10 : +d[round51Names[1][1]].replace(/,/g, "")
+  });
+
 // #round 4
 
 myRound410.create('#round4-1-0', round4_1, {
@@ -909,10 +939,13 @@ myRound410.create('#round4-1-0', round4_1, {
     myRound410.resize()
     myRound411.resize()
     myRound412.resize()
-    myRound413.resize()
-    myTunaGod.resize()
+    myRound413.resize()    
+    myRound510.resize()
+    myRound511.resize()
 
-    // myFruit8.resize()    
+    myTunaGod.resize()
+    myCompare.resize()
+
   }, 400);
 
   window.addEventListener('resize', () => {
@@ -920,8 +953,8 @@ myRound410.create('#round4-1-0', round4_1, {
   });
 }
 
-function compileData(a,b,c,d,e,f,g,h) {
-  var allData = [a,b,c,d,e,f,g,h]
+function compileData(a,b,c,d,e,f,g,h,aa) {
+  var allData = [a,b,c,d,e,f,g,h,aa]
 
   var finalData = [];
 
@@ -956,7 +989,7 @@ function compileData(a,b,c,d,e,f,g,h) {
       }
     }
   }
-  console.log(finalData)
+  // console.log(finalData)
   return finalData;
 }
 
