@@ -34,7 +34,7 @@ export default () => ({
       //   return d;
       // },
       // yTickSteps: d3.range(20, 50, 10),      
-      colorScaleRange: ["#00ff80","#ff00ff","#ff0e00","#00eeff","purple"]
+      colorScaleRange: ["#00ff80","#ff00ff","#ff0e00","#00eeff","purple","blue"]
     };
 
     function chart(selection) {
@@ -63,7 +63,7 @@ export default () => ({
 
         // Normalize data
         // array of array because you might have more than one series (multiple line chart)
-        console.log(data)
+        // console.log(data)
         const normData = []
 
         for (var i = 0; i < data.length; i++) {
@@ -79,6 +79,8 @@ export default () => ({
             rounder = 4
           } else if (data[i].round == 8) {
             rounder = 5
+          } else if (data[i].round == 9) {
+            rounder = 6
           }
 
           // if (data[i].vote1 > data[i].vote2) {
@@ -104,7 +106,7 @@ export default () => ({
           // }
         }
 
-        console.log(normData)
+        // console.log(normData)
 
         // const normData = [childData1,childData2];        
 
@@ -131,7 +133,7 @@ export default () => ({
         //   yExtent2 = [yExtent[0],(yExtent[0]*-1)]
         // }
 
-        var roundIndex = ["First Round","Second Round","Sweet Sixteen","Elite Eight","Final Four","Semifinal","Final"]
+        var roundIndex = ["First Round","Second Round","Sweet Sixteen","Elite Eight","Final Four","Championship"]
 
         // If an extent is not provided as a prop, default to the min/max of our data
         const xScale = d3.scaleTime()

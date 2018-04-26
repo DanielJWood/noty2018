@@ -16,8 +16,8 @@ export default () => ({
 
     let props = {
       xAccessor: d => d.date,
-      yAccessor: d => null,
-      y2Accessor: d => null,
+      // yAccessor: d => null,
+      // y2Accessor: d => null,
       labelAccessor: null,
       // xTickFormat: null,
       // yTickFormat: null,
@@ -151,8 +151,10 @@ export default () => ({
             .attr("x",`-${innerHeight}`)
             .attr("dy", "0.4em")
             .attr("text-anchor", "start")
-            .text("←Quindarious Gooch");
+            .text("←" + props.y2Name());
      
+        // console.log()
+
         g.appendSelect("text","label2")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
@@ -160,7 +162,7 @@ export default () => ({
             .attr("x",10)
             .attr("dy", "0.4em")
             .attr("text-anchor", "end")
-            .text("Delicious Peters→");            
+            .text(props.yName() + "→");            
 
         g.appendSelect('g', 'x axis')
           .attr('transform', `translate(0,${innerHeight/2})`)
