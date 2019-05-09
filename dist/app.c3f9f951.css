@@ -1,0 +1,74 @@
+body {
+  font-family: 'Roboto Slab', serif; }
+
+h1, h2, h3 {
+  font-family: 'Roboto Slab', serif; }
+
+.footer {
+  padding-top: 40px;
+  color: #696969; }
+
+#header {
+  text-align: center; }
+  #header h1, #header h2, #header h3 {
+    padding: 0px;
+    margin: 0px; }
+  #header h3 {
+    padding-bottom: 10px; }
+
+.region {
+  text-align: center;
+  margin-top: 50px; }
+
+/* #single-line-chart, #multiple-line-chart {*/
+.chart {
+  width: 25%;
+  height: 300px;
+  float: left; }
+  .chart .title {
+    text-align: center;
+    height: 50px; }
+  .chart span.green {
+    background-color: #99ffcc; }
+  .chart span.pink {
+    background-color: #ff99ff; }
+  .chart.large {
+    width: 50%; }
+  .chart.comp {
+    width: 100%;
+    height: 500px; }
+  .chart.diff {
+    width: 100%;
+    height: 500px; }
+    .chart.diff .x.axis path {
+      display: block;
+      stroke-width: 2px;
+      stroke: #333; }
+  .chart circle {
+    cursor: pointer; }
+  @media screen and (max-width: 700px) {
+    .chart {
+      width: 50%;
+      height: 300px; } }
+  @media screen and (max-width: 400px) {
+    .chart {
+      width: 100%;
+      height: 300px; } }
+  .chart path {
+    fill: none;
+    stroke-width: 2px; }
+  .chart .axis path {
+    display: none; }
+  .chart .axis text {
+    font-size: 13px;
+    fill: grey; }
+  .chart .axis.x line {
+    display: none; }
+  .chart .axis.y text {
+    text-anchor: end; }
+  .chart .axis.y line {
+    stroke: lightgrey;
+    stroke-dasharray: 3px 3px; }
+
+
+/*# sourceMappingURL=/app.c3f9f951.css.map */
